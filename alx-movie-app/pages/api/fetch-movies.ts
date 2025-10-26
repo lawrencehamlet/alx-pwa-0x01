@@ -48,8 +48,10 @@ export default async function handler(request: NextApiRequest, response: NextApi
     const movies: MoviesProps[] = moviesResponse.results ?? [];
 
     return response.status(200).json({ movies });
-  } catch (err: any) {
-    console.error("Error in /api/fetch-movies:", err?.message ?? err);
-    return response.status(500).json({ error: "Internal server error", details: err?.message ?? String(err) });
+  } catch (err: unknown) {
+    // Narrow unknown to extract a useful message without using `any`.
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("Error in /api/fetch-movies:", message);
+    return response.status(500).json({ error: "Internal server error", details: message });
   }
 }

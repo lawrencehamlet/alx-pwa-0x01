@@ -24,3 +24,4 @@ public/icons/*
 # Ignore local editor files
 .vscode/
 .idea/
+.vercel

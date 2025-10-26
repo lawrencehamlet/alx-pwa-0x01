@@ -1,0 +1,5 @@
+# Ignore generated scripts and large binary files
+scripts/
+public/icons/
+node_modules/
+.next/
